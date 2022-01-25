@@ -5,6 +5,23 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class HelloSubject implements Subject<HelloSubject> {
+    private static volatile HelloSubject instance;
+
+    public static HelloSubject getInstance() {
+        if (instance == null) {
+            synchronized (HelloSubject.class) {
+                if (instance == null) {
+                    instance = new HelloSubject();
+                }
+            }
+        }
+
+        return instance;
+    }
+
+    private HelloSubject() {
+    }
+
     private final List<Observer<HelloSubject>> observers = new LinkedList<>();
     private String message;
 

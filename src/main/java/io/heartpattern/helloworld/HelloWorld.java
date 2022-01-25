@@ -9,9 +9,8 @@ import io.heartpattern.helloworld.observer.HelloSubject;
 
 public class HelloWorld {
     public static void main(String[] args) {
-        var subject = new HelloSubject();
-        subject.attach(ObserverFactory.createObserver(ObserverType.CONSOLE));
-        subject.attach(ObserverFactory.createObserver(ObserverType.FILE));
+        HelloSubject.getInstance().attach(ObserverFactory.createObserver(ObserverType.CONSOLE));
+        HelloSubject.getInstance().attach(ObserverFactory.createObserver(ObserverType.FILE));
 
         var decorator = new HeartDecorator(
                 new StarDecorator(
@@ -19,6 +18,6 @@ public class HelloWorld {
                 )
         );
 
-        subject.setMessage(decorator.decorate("Hello world!"));
+        HelloSubject.getInstance().setMessage(decorator.decorate("Hello world!"));
     }
 }
