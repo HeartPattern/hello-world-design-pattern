@@ -1,16 +1,15 @@
 package io.heartpattern.helloworld.command;
 
 import io.heartpattern.helloworld.decorator.MessageDecorator;
+import io.heartpattern.helloworld.facade.TalkFacade;
 import io.heartpattern.helloworld.observer.HelloSubject;
 
 public class Greeter {
-    private final HelloSubject subject;
-    private final MessageDecorator decorator;
+    private final TalkFacade facade;
     private Command command;
 
-    public Greeter(HelloSubject subject, MessageDecorator decorator) {
-        this.subject = subject;
-        this.decorator = decorator;
+    public Greeter(TalkFacade facade) {
+        this.facade = facade;
     }
 
     public void setCommand(Command command) {
@@ -18,6 +17,6 @@ public class Greeter {
     }
 
     public void greet() {
-        command.execute(subject, decorator);
+        command.execute(facade);
     }
 }

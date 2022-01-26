@@ -5,6 +5,7 @@ import io.heartpattern.helloworld.command.HelloWorldCommand;
 import io.heartpattern.helloworld.decorator.HeartDecorator;
 import io.heartpattern.helloworld.decorator.NoopDecorator;
 import io.heartpattern.helloworld.decorator.StarDecorator;
+import io.heartpattern.helloworld.facade.TalkFacade;
 import io.heartpattern.helloworld.factory.ObserverFactory;
 import io.heartpattern.helloworld.factory.ObserverType;
 import io.heartpattern.helloworld.observer.HelloSubject;
@@ -20,7 +21,9 @@ public class HelloWorld {
                 )
         );
 
-        var greeter = new Greeter(HelloSubject.getInstance(), decorator);
+        var facade = new TalkFacade(HelloSubject.getInstance(), decorator);
+
+        var greeter = new Greeter(facade);
         greeter.setCommand(new HelloWorldCommand());
         greeter.greet();
     }
