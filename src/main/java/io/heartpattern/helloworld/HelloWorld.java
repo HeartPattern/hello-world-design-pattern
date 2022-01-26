@@ -9,6 +9,7 @@ import io.heartpattern.helloworld.facade.TalkFacade;
 import io.heartpattern.helloworld.factory.ObserverFactory;
 import io.heartpattern.helloworld.factory.ObserverType;
 import io.heartpattern.helloworld.observer.HelloSubject;
+import io.heartpattern.helloworld.templatemethod.FormalConversation;
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -25,6 +26,8 @@ public class HelloWorld {
 
         var greeter = new Greeter(facade);
         greeter.setCommand(new HelloWorldCommand());
-        greeter.greet();
+
+        var conversation = new FormalConversation(greeter, facade);
+        conversation.talk();
     }
 }
