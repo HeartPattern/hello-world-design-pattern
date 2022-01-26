@@ -1,5 +1,7 @@
 package io.heartpattern.helloworld;
 
+import io.heartpattern.helloworld.command.Greeter;
+import io.heartpattern.helloworld.command.HelloWorldCommand;
 import io.heartpattern.helloworld.decorator.HeartDecorator;
 import io.heartpattern.helloworld.decorator.NoopDecorator;
 import io.heartpattern.helloworld.decorator.StarDecorator;
@@ -18,6 +20,8 @@ public class HelloWorld {
                 )
         );
 
-        HelloSubject.getInstance().setMessage(decorator.decorate("Hello world!"));
+        var greeter = new Greeter(HelloSubject.getInstance(), decorator);
+        greeter.setCommand(new HelloWorldCommand());
+        greeter.greet();
     }
 }
